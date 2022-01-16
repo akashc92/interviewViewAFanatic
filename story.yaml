@@ -1,0 +1,136 @@
+metadata:
+  title: Interview with a fanatic
+  author: Akash Chaudhary
+  email: achaud10@ucsc.edu
+
+initially:
+  description: >
+    You are a well established journalist.
+    You get an opportunity to interview a convicted Godmen.
+    Getting ready, you are anxious, yet excited!
+  location: outside
+  inventory: [watch]
+  
+
+locations:
+
+  outside:
+  
+    descriptions:
+      - text: You are blindfolded and taken to a far off remote place.
+        with: [watch]
+        without: [greet, knowledge]
+
+      - text: The car stops. Your bindfold is removed. The place is in the middle of nowhere. Your smartwatch display color changes as you observ time.
+        with: [watch]
+        without: [greet, knowledge]
+        tags: [lit]
+
+      - text: You realize your watch is not functioning.
+        without: [watch]
+        tags: [dim]
+
+      - text: No hanky panky. Neat and clean, no unnecessary adventures. You must be a great journalist.
+        with: [watch, greet]
+        tags: [lit]
+
+      - text: Last time that happened was in your childhood when your brother's watch got too close to yours.
+        with: [greet]
+        without: [watch]
+        tags: [dim]
+
+    choices:
+      - text: Go inside
+        target: inside
+        narration: You are taken to an unknown basement.
+        with: [watch]
+        tags: [lit]
+        
+  inside:
+    
+    descriptions:
+      - text: The driver escorts you to Godmen Guruji's waiting area outside his elusive place of retirement.
+        with: [watch]
+        without: [knowledge, greet]
+
+      - text: Your smart watch crashes with a whirring display, and then gets back up running within seconds.
+        with: [watch]
+        tags: [lit]
+        without: [knowledge]
+
+      - text: Something's really fishy about that watch. It's freaking you out.
+        without: [watch]
+        tags: [dim]
+
+      - text: You see Guruji roaming in his quarters.
+        without: [greet, knowledge]
+        
+      - text: You feel that Guruji has some deeper motive to call you for an interview.
+        tags: [lit]
+        with: [knowledge]
+        without: [tension, greet]
+
+    choices:
+      - text: You've had enough
+        target: outside
+        narration: You are escorted out.
+
+      - text: Explore the shiny object.
+        target: hallway
+        narration: You reach close to the table, and witness a weirdly similar watch.
+        with: [watch]
+        tags: [lit]
+
+      - text: Meet Guruji
+        narration: You say Namaste. Guruji's stern look changes to a soft smile.
+        target: get_greeted
+        with: [knowledge]
+        without: [greet]
+        
+      - text: Talk to driver
+        narration: You look at the driver who is busy with his phone and say hi to get his attention.
+        target: chat_driver
+        without: [knowledge]
+        
+        
+  get_greeted:
+  
+    provides: [greet]
+  
+    descriptions:
+      - text: You have a good discussion. However, Guruji seems arrogant when questioned about his convict status!
+      
+    choices:
+      - text: Guruji says thank you. You may leave!
+        narration: Having interviewed Guruji, going back you witness a shiny object in the hallway.
+        target: inside
+        
+  hallway:
+  
+    provides: [tension]
+    breaks: [watch]
+      
+    descriptions:
+      - text: You feel weird! You remember that this is a rare vintage collection, and only two pices of the same were left.
+        tags: [dim]
+      
+    choices:
+      - text: Ponder your way back
+        narration: Surpised and confused, you head back to the waiting area.
+        target: inside
+        
+  chat_driver:
+  
+    provides: [knowledge]
+      
+    descriptions:
+      - text: The driver looks up and replies back. He seems to be overwhelmed by Guruji and keeps appreciating him.
+      
+      - text: He says you are the luckiest man on the planet. No one talks to Guruji directly otherwise. He wonders why Guruji made an exception.
+        tags: [lit]
+      
+    choices:
+      - text: Go back to the waiting area.
+        narration: You wonder why Guruji took so much pain to get you here just for an interview.
+        target: inside
+        
